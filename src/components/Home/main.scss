@@ -1,0 +1,12 @@
+@import '@/assets/scss/vars.scss';
+// have to fix the import for bourbon... not sure how
+@import '~bourbon/core/bourbon';
+
+#home {
+  height: $base-unit * 30;
+  display: flex;
+  h1 {
+    margin: auto;
+    font-size: $font-size * 3;
+  }
+}

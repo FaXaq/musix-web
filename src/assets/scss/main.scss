@@ -1,0 +1,12 @@
+div#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    div#wrapper {
+        flex-grow: 1;
+        background-color: $bg-light;
+        > * {
+            height: 100%;
+        }
+    }
+}

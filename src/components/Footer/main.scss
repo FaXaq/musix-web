@@ -1,0 +1,13 @@
+@import '@/assets/scss/vars.scss';
+
+#mainFooter {
+    height: $base-unit * 10;
+    background-color: $main-dark;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 20px;
+    > ul {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
