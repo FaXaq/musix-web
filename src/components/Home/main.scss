@@ -3,10 +3,11 @@
 @import '~bourbon/core/bourbon';
 
 #home {
-  height: $base-unit * 30;
-  display: flex;
-  h1 {
-    margin: auto;
-    font-size: $font-size * 3;
+    height: $base-unit * 30;
+    width: 100%;
+    display: flex;
+
+  > * {
+      flex-grow: 1;
   }
 }

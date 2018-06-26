@@ -1,3 +1,5 @@
+import NavItem from '@/components/Nav/NavItem/NavItem';
+
 export default {
   name: 'Nav',
   data () {
@@ -6,7 +8,9 @@ export default {
       routes: []
     }
   },
-
+  components: {
+    NavItem
+  },
   methods: {
     toggleClose() {
       this.close = !this.close
@@ -33,11 +37,12 @@ export default {
           }
         }
       })
+    },
+    menuItemSelected() {
+      this.close = false
     }
   },
   created() {
     this.populateRoutes(this.routes, this.$router.options.routes)
-
-    console.log(this.routes)
   }
 }

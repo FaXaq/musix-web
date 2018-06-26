@@ -1,13 +1,50 @@
 @import '@/assets/scss/vars.scss';
 
-#mainFooter {
+#footer {
     height: $footer-height;
     background-color: $main-dark;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     padding: 20px;
+    position: relative;
+    font-size: $font-size * 0.7;
+
+    #copy {
+        position: absolute;
+        bottom: 0;
+        padding: $base-unit;
+        right: 0;
+    }
+
     > ul {
-        display: flex;
-        flex-direction: column-reverse;
+        width: 100%;
+        color: $white;
+        text-align: left;
+        padding: 0 20%;
+
+        > li {
+            position: relative;
+
+            &::before {
+                content: '';
+                display: block;
+                height: $quarter-unit;
+                width: $quarter-unit;
+                position: absolute;
+                background-color: darken($white, 20);
+                top: calc(50% - #{$eight-unit});
+                left: - $base-unit;
+                border-radius: 100%;
+            }
+
+            > a {
+                color: $white;
+                transition: all 0.3s;
+
+                &:hover {
+                    color: darken($white, 10);
+                }
+            }
+        }
     }
 }

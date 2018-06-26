@@ -1,29 +1,19 @@
 <template>
-  <div id="mainNav">
+  <div id="nav">
     <div id="burger" @click="toggleClose()" :class="{ close: close }">
       <div id="topBar"></div>
       <div id="centralBar"></div>
       <div id="bottomBar"></div>
     </div>
+    <!-- handling mobile -->
     <v-touch id="dragOpen" :class="{ active: !close }" @swiperight="dragOpen()" />
     <ul id="menu" :class="{ active: close }">
-      <li>
-        <div>
-          <div class="arrow"></div>
-          <p>Menu</p>
-          <ul>
-            <li>test</li>
-          </ul>
-        </div>
-        <div>
-          <div class="arrow"></div>
-          <p>Menu</p>
-          <ul>
-            <li>test</li>
-          </ul>
-        </div>
+      <li v-for="route in routes">
+        <nav-item :route="route" @selected="menuItemSelected()"></nav-item>
       </li>
     </ul>
+
+    <!-- handling mobile -->
     <v-touch :class="{ active: close }" id="dragClose" @swipeleft="dragClose()" @tap="dragClose()"/>
   </div>
 </template>

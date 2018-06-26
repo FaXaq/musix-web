@@ -1,0 +1,99 @@
+@import '@/assets/scss/vars.scss';
+
+p {
+    padding: $base-unit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+div {
+
+    // submenu
+    div.menu-item {
+        display: flex;
+        position: relative;
+
+        &.active {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        > .arrow {
+            position: absolute;
+            height: 100%;
+            width: 50px;
+            // half of the height of the arrow + height of paragraph
+            // top: (sin(45deg) * $quarter-unit) + $base-unit + $quarter-unit;
+
+            &::before, &::after {
+                transition: all 0.3s;
+                content: '';
+                display: block;
+                width: $base-unit;
+                height: $eight-unit;
+                background-color: darken($white, 10);
+                position: absolute;
+                border-radius: 10pt;
+                top: 50%;
+                left: calc(50% - #{$base-unit});
+            }
+
+            &::before {
+                transform: rotate(45deg);
+            }
+
+            &::after {
+                transform: rotate(-45deg);
+                left: calc(50% - #{(sin(45deg) * $half-unit)});
+            }
+
+            &.up {
+                &::before {
+                    transform: rotate(-45deg);
+                }
+
+                &::after {
+                    transform: rotate(45deg);
+                }
+            }
+        }
+
+        a {
+            flex-grow: 1;
+            padding: 0 $base-unit;
+            transition: all 0.3s;
+
+            &:hover {
+                background-color: rgba(0,0,0,0.5);
+                color: lighten($main-color, 20);
+            }
+        }
+    }
+
+    // sub menus
+
+    ul {
+        background-color: rgba(0,0,0,0.1);
+        text-align: center;
+        font-size: $font-size * 0.9;
+        padding-left: $base-unit;
+        position: relative;
+        display: none;
+
+        &.active {
+            display: block;
+        }
+
+        &::before {
+            content: '';
+            height: 100%;
+            width: $base-unit;
+            left: 0;
+            position: absolute;
+            background-color: $main-dark;
+        }
+    }
+}

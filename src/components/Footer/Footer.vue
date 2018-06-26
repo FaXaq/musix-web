@@ -1,8 +1,9 @@
 <template>
-  <div id="mainFooter">
-    <ul>
-      <li> &copy; 2018 - Marin Procureur</li>
+  <div id="footer">
+    <ul class="footer-links">
+      <li><router-link :to="{ name: 'about-us' }">About us</router-link></li>
     </ul>
+    <p id="copy">&copy; 2018 - Marin Procureur</p>
   </div>
 </template>
 

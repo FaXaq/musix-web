@@ -1,10 +1,10 @@
 @import '@/assets/scss/vars.scss';
 
-#mainNav {
+#nav {
     background-color: $main-color;
     height: $nav-height;
     z-index: 6;
-    box-shadow: 0px 0px 20px rgba($main-dark, .3);
+    box-shadow: 0px 0px 7px rgba($main-dark, .3);
 
     #burger {
         position: relative;
@@ -12,6 +12,7 @@
         width: $base-unit * 2.5;
         margin: ($base-unit * 0.75) $base-unit;
         z-index: 4;
+        cursor: pointer;
 
         #topBar, #centralBar, #bottomBar {
             position: absolute;
@@ -53,7 +54,6 @@
     #menu {
         display: block;
         z-index: 5;
-        height: calc(100vh - #{$nav-height});
         width: $base-unit * 20;
         position: absolute;
         top: $nav-height;
@@ -64,6 +64,7 @@
 
         &.active {
             left: 0;
+            box-shadow: 2px 2px 7px rgba($main-dark, .3);
         }
 
         display: flex;
@@ -76,69 +77,7 @@
             text-shadow: 0px 0px 20px rgba(darken($main-dark, 20), 0.4);
             background-color: darken($main-color, 30);
             display: block;
-            border-bottom: 1px solid darken($main-color, 60);
-
-            p {
-                padding: $base-unit;
-            }
-
-            // submenu
-            > div {
-                margin: 0 $base-unit $base-unit $base-unit;
-                position: relative;
-
-                .arrow {
-                    position: absolute;
-                    // half of the height of the arrow + height of paragraph
-                    top: (sin(45deg) * $quarter-unit) + $base-unit + $quarter-unit;
-
-                    &::before, &::after {
-                        transition: all 0.3s;
-                        content: '';
-                        display: block;
-                        width: $base-unit;
-                        height: $eight-unit;
-                        background-color: darken($white, 10);
-                        position: absolute;
-                        border-radius: 10pt;
-                        top: 50%;
-                        left: 0;
-                    }
-
-                    &::before {
-                        transform: rotate(45deg);
-                    }
-
-                    &::after {
-                        transform: rotate(-45deg);
-                        left: (sin(45deg) * $half-unit) + $quarter-unit;
-                    }
-
-                    &.up {
-                        &::before {
-                            transform: rotate(-45deg);
-                        }
-
-                        &::after {
-                            transform: rotate(45deg);
-                        }
-                    }
-                }
-
-                // sub menus
-
-                ul {
-                    margin: 0 (-$base-unit) (-$base-unit);
-                    text-align: left;
-                    background-color: darken($main-color, 40);
-
-                    li {
-                        padding: $base-unit;
-                        padding-left: $double-unit;
-                        border-bottom: 1px solid $main-dark;
-                    }
-                }
-            }
+            border-bottom: 1px solid $main-dark;
         }
     }
 
@@ -165,7 +104,7 @@
 
         &.active {
             display: block;
-            background-color: rgba(0,0,0, 0.3);
+            // background-color: rgba(0,0,0, 0.3);
             transition-delay: display 0.3s;
         }
     }
