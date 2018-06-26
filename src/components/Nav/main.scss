@@ -1,6 +1,172 @@
 @import '@/assets/scss/vars.scss';
 
-#main-nav {
+#mainNav {
     background-color: $main-color;
-    height: $base-unit * 3;
+    height: $nav-height;
+    z-index: 6;
+    box-shadow: 0px 0px 20px rgba($main-dark, .3);
+
+    #burger {
+        position: relative;
+        height: $base-unit * 1.5;
+        width: $base-unit * 2.5;
+        margin: ($base-unit * 0.75) $base-unit;
+        z-index: 4;
+
+        #topBar, #centralBar, #bottomBar {
+            position: absolute;
+            width: 100%;
+            height: $base-unit / 4;
+            background-color: $white;
+            transition: all 0.3s;
+        }
+
+        #topBar {
+            top: 0;
+        }
+
+        #centralBar {
+            top: calc(50% - (#{$base-unit} / 4)/2);
+        }
+
+        #bottomBar {
+            bottom: 0;
+        }
+
+        &.close {
+            #topBar {
+                transform: rotate(45deg);
+                top: calc(50% - (#{$base-unit} / 4)/2);
+            }
+
+            #centralBar {
+                width: 0;
+            }
+
+            #bottomBar {
+                bottom: calc(50% - (#{$base-unit} / 4)/2);
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    #menu {
+        display: block;
+        z-index: 5;
+        height: calc(100vh - #{$nav-height});
+        width: $base-unit * 20;
+        position: absolute;
+        top: $nav-height;
+        left: - $base-unit * 20;
+        transition: all 0.3s;
+        background-color: darken($main-color, 40);
+        text-align: center;
+
+        &.active {
+            left: 0;
+        }
+
+        display: flex;
+        flex-direction: column;
+
+        > li {
+            color: darken($white, 5);
+            position: relative;
+            font-weight: bold;
+            text-shadow: 0px 0px 20px rgba(darken($main-dark, 20), 0.4);
+            background-color: darken($main-color, 30);
+            display: block;
+            border-bottom: 1px solid darken($main-color, 60);
+
+            p {
+                padding: $base-unit;
+            }
+
+            // submenu
+            > div {
+                margin: 0 $base-unit $base-unit $base-unit;
+                position: relative;
+
+                .arrow {
+                    position: absolute;
+                    // half of the height of the arrow + height of paragraph
+                    top: (sin(45deg) * $quarter-unit) + $base-unit + $quarter-unit;
+
+                    &::before, &::after {
+                        transition: all 0.3s;
+                        content: '';
+                        display: block;
+                        width: $base-unit;
+                        height: $eight-unit;
+                        background-color: darken($white, 10);
+                        position: absolute;
+                        border-radius: 10pt;
+                        top: 50%;
+                        left: 0;
+                    }
+
+                    &::before {
+                        transform: rotate(45deg);
+                    }
+
+                    &::after {
+                        transform: rotate(-45deg);
+                        left: (sin(45deg) * $half-unit) + $quarter-unit;
+                    }
+
+                    &.up {
+                        &::before {
+                            transform: rotate(-45deg);
+                        }
+
+                        &::after {
+                            transform: rotate(45deg);
+                        }
+                    }
+                }
+
+                // sub menus
+
+                ul {
+                    margin: 0 (-$base-unit) (-$base-unit);
+                    text-align: left;
+                    background-color: darken($main-color, 40);
+
+                    li {
+                        padding: $base-unit;
+                        padding-left: $double-unit;
+                        border-bottom: 1px solid $main-dark;
+                    }
+                }
+            }
+        }
+    }
+
+    // handling drag & drop on menu
+    #dragOpen {
+        height: calc(100vh - #{$nav-height});
+        width: $base-unit * 5;
+        z-index: -1;
+        position: absolute;
+        top: $nav-height;
+
+        &.active {
+            z-index: 5;
+        }
+    }
+
+    #dragClose {
+        height: calc(100vh - #{$nav-height});
+        position: absolute;
+        width: 100%;
+        left: 0;
+        transition: background-color 0.3s;
+        display: none;
+
+        &.active {
+            display: block;
+            background-color: rgba(0,0,0, 0.3);
+            transition-delay: display 0.3s;
+        }
+    }
 }

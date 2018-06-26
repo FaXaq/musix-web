@@ -1,0 +1,29 @@
+@import '@/assets/scss/vars.scss';
+
+/**
+ * Reset button styles.
+ * It takes a bit of work to achieve a neutral look.
+ */
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  /* show a hand cursor on hover; some argue that we
+  should keep the default arrow cursor for buttons */
+  cursor: pointer;
+}
+
+button {
+    &.btn {
+        background-color: $white;
+        border: 1px solid darken($bg-light, 50);
+
+        &.btn-note {
+            padding: $base-unit / 2;
+            border-radius: 5pt;
+            box-shadow: 0px 0px 5px transparentize($main-dark, 0.6);
+        }
+    }
+}

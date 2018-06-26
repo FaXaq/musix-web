@@ -1,7 +1,7 @@
 @import '@/assets/scss/vars.scss';
 
 #mainFooter {
-    height: $base-unit * 10;
+    height: $footer-height;
     background-color: $main-dark;
     display: flex;
     flex-direction: row-reverse;

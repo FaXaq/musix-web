@@ -1,0 +1,147 @@
+@import '@/assets/scss/vars.scss';
+
+.guitar {
+
+    color: $white;
+    margin: 20px;
+    border: 2px solid white;
+    border-collapse: collapse;
+    box-shadow: 0px 0px 20px grey;
+
+    .neck {
+        display: flex;
+        flex-direction: row;
+
+        .nut {
+            color: $main-dark;
+            padding: 0px 10px;
+            display: flex;
+            flex-direction: column;
+            border-right: 3px solid white;
+            padding: 10px 0px;
+        }
+
+        .frets {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-around;
+
+            > .fret {
+                background-image: url('./rosewood_neck.jpg');
+                background-color: #432c26;
+                flex-grow: 2;
+                flex-basis: 0;
+                border-right: 2px solid white;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+
+                &.fret3, &.fret5, &.fret7, &.fret9, &.fret15, &.fret17, &.fret19, &.fret21 {
+                    &::before {
+                        content: '';
+
+                        position: absolute;
+                        top: calc(50% - 5px);
+                        left: calc(50% - 5px);
+                        z-index: 1;
+                        display: block;
+
+                        height: 10px;
+                        width: 10px;
+                        border-radius: 100%;
+                        background: $inlay-bg;
+                    }
+                }
+
+                &.fret12, &.fret24 {
+                    &::before, &::after {
+                        content: '';
+
+                        position: absolute;
+                        top: calc(25% - 5px);
+                        left: calc(50% - 5px);
+                        z-index: 1;
+                        display: block;
+
+                        height: 10px;
+                        width: 10px;
+                        border-radius: 100%;
+                        background: $inlay-bg;
+                    }
+
+                    &::after {
+                        top: calc(75% - 5px);
+                    }
+                }
+            }
+
+            > .empty-fret {
+                background: url('./rosewood_neck.jpg');
+                flex-grow: 1;
+            }
+
+            .string {
+                flex-grow: 1;
+                flex-basis: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: middle;
+                z-index: 2;
+                padding: 10px 0px;
+
+                > div:not(.note) {
+                    background: $guitar-string;
+                    display: block;
+                    position: absolute;
+                    width: 100%;
+                    z-index: 2;
+                }
+
+                > .string6 {
+                    // bass string
+                    height: 3.5px;
+                }
+
+                > .string5 {
+                    // bass string
+                    height: 3.2px;
+                }
+
+                > .string4 {
+                    // bass string
+                    height: 2.7px;
+                }
+
+                > .string3 {
+                    // bass string
+                    height: 2px;
+                }
+
+                > .string2 {
+                    // bass string
+                    height: 1.7px;
+                }
+
+                > .string1 {
+                    // bass string
+                    height: 1.5px;
+                }
+
+                .note {
+                    height: 100%;
+                    width: 50%;
+                    margin: auto;
+                }
+            }
+        }
+    }
+}
+
+.note {
+    z-index: 3;
+    text-shadow: 0px 0px 10px rgba(0,0,0,1);
+    background-color: red;
+    border-radius: 100%;
+    width: 100%;
+}
