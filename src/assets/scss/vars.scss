@@ -1,9 +1,51 @@
-$main-color: #81EAC9;
-$main-dark: #183738;
-$bg-light: #FAFAFA;
-$white: white;
+// colors
+
+$main-cta: #94e064;
+$main-blue: #46b6e6;
+$main-yellow: #f0e63c;
+$main-red: #e6466d;
+$main-pink: #f43890;
+
+// lights
+$light-cta: #c2eda7;
+$light-blue: #9dd9db;
+$light-yellow: #f6ef86;
+$light-red: #f08ca5;
+$light-pink: #ef8dbb;
+
+// darks
+$dark-cta: #68cb29;
+$dark-blue: #3a9a9e;
+$dark-yellow: #ccc010;
+$dark-red: #c21a43;
+$dark-pink: #d00c68;
+
+$main-color: #94e064;
+
+$main-dark: #2e494a;
+$bg-light: #fafafa;
+$white: #fafafa;
+
+// fonts
+@import url('https://fonts.googleapis.com/css?family=Oxygen:300,400,700&subset=latin-ext');
+$font-family: 'Oxygen', 'Avenir', Helvetica, Arial, sans-serif;
 
 $font-size: 12pt;
+$line-height: 120%;
+
+$font-color-title: $main-dark;
+$font-color: #3c6464;
+
+$font-color-light: #cde0e1;
+$font-color-title-light: #e6eff0;
+
+$light-font-color-light: #cde0e1;
+$light-font-color-title-light: $white;
+
+$dark-font-color-light: #9bc1c3;
+$dark-font-color-title-light: #b4cfd2;
+
+// units
 
 $base-unit: 16px;
 $double-unit: $base-unit * 2;

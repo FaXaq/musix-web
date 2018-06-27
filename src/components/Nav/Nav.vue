@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div id="nav" :class="{ open: close }">
     <div id="burger" @click="toggleClose()" :class="{ close: close }">
       <div id="topBar"></div>
       <div id="centralBar"></div>

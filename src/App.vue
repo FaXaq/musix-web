@@ -28,10 +28,10 @@ export default {
  @import '@/assets/scss/buttons.scss';
 
  #app {
-   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+   font-family: $font-family;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    text-align: center;
-   color: $white;
+   color: $font-color;
  }
 </style>

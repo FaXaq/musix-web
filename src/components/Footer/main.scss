@@ -1,6 +1,7 @@
 @import '@/assets/scss/vars.scss';
 
 #footer {
+    color: $font-color-light;
     height: $footer-height;
     background-color: $main-dark;
     display: flex;

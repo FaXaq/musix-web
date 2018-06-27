@@ -1,3 +1,5 @@
+@import '@/assets/scss/vars.scss';
+
 div#app {
     min-height: 100vh;
     display: flex;
@@ -5,8 +7,186 @@ div#app {
     div#wrapper {
         flex-grow: 1;
         background-color: $bg-light;
+        display: flex;
+
         > * {
-            height: 100%;
+            flex-grow: 1;
         }
     }
+}
+
+div.jumbotron {
+    width: 100%;
+    height: 30vh;
+}
+
+p {
+    color: $font-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: $font-color-title;
+}
+
+
+h1 {
+    font-size: $font-size * 3;
+}
+
+h2 {
+    font-size: $font-size * 2.5;
+}
+
+h3 {
+    font-size: $font-size * 2;
+}
+
+h4 {
+    font-size: $font-size * 1.75;
+}
+
+h5 {
+    font-size: $font-size * 1.5;
+}
+
+h6 {
+    font-size: $font-size * 1.25;
+}
+
+// text classes
+
+.t-center {
+    text-align: center;
+}
+
+.t-left {
+    text-align: left;
+}
+
+.t-right {
+    text-align: right;
+}
+
+.t-justify {
+    text-align: justify;
+}
+
+// positionning classes
+
+.flex {
+    display: flex;
+    flex-direction: row;
+
+    &.column {
+        flex-direction: column;
+
+        &.reverse {
+            flex-direction: reverse-column;
+        }
+    }
+    &.row {
+        &.reverse {
+            flex-direction: row-reverse;
+        }
+    }
+
+    > .f-grow {
+        flex-grow: 1;
+    }
+
+    > .f-basis {
+        flex-basis: 1;
+    }
+
+    .align-middle {
+        jusitfy-content: center;
+        align-items: center;
+    }
+}
+
+
+// class sizing, padding & margins
+
+// widths
+
+@for $i from 1 through 100 {
+    .w-#{$i} {
+        width: $i + 0%;
+    }
+}
+
+@for $i from 1 through 100 {
+    .h-#{$i} {
+        height: $i + 0%;
+    }
+}
+
+// paddings
+
+@for $i from 1 through 4 {
+    .p-left-base-#{$i} {
+        padding-left: $base-unit * $i;
+    }
+
+    .p-right-base-#{$i} {
+        padding-right: $base-unit * $i;
+    }
+
+    .p-top-base-#{$i} {
+        padding-top: $base-unit * $i;
+    }
+
+    .p-bottom-base-#{$i} {
+        padding-bottom: $base-unit * $i;
+    }
+
+    .p-base-#{$i} {
+        padding: $base-unit * $i;
+    }
+}
+
+@for $i from 1 through 4 {
+    .p-left-half-#{$i} {
+        padding-left: $half-unit * $i;
+    }
+
+    .p-right-half-#{$i} {
+        padding-right: $half-unit * $i;
+    }
+
+    .p-top-half-#{$i} {
+        padding-top: $half-unit * $i;
+    }
+
+    .p-bottom-half-#{$i} {
+        padding-bottom: $half-unit * $i;
+    }
+
+    .p-half-#{$i} {
+        padding: $half-unit * $i;
+    }
+}
+
+
+// imgs
+
+img {
+    .i-block {
+        display: block;
+    }
+
+    .i-w-100 {
+        width: 100%;
+    }
+
+    .i-h-100 {
+        height: 100%;
+    }
+}
+
+// overflow
+
+.no-overflow {
+    overflow: hidden;
 }

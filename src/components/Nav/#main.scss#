@@ -21,7 +21,7 @@
         z-index: 4;
         cursor: pointer;
 
-        #topBar, #centralBar, #bottomBar {
+        #topBar, #centralBar, #bottomBar {b
             position: absolute;
             width: 100%;
             height: $base-unit / 4;
