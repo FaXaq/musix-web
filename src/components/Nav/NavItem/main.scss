@@ -10,91 +10,118 @@ a {
     display: block;
 }
 
-div {
+div.menu-item-container {
 
-    // submenu
-    div.menu-item {
-        display: flex;
+    // icon
+    > div.menu-icon {
         position: relative;
+        width: $nav-height;
+        height: $nav-height;
+        cursor: pointer;
+        border-radius: $nav-height;
+        transition: all 0.3s;
 
-        &.active {
-            background-color: rgba(0, 0, 0, 0.2);
+        > svg {
+            position: absolute;
+            top: $base-unit;
+            left: $base-unit - $eight-unit;
         }
 
-        > .arrow {
-            position: absolute;
-            height: 100%;
-            width: 50px;
-            right: 0;
-            // half of the height of the arrow + height of paragraph
-            // top: (sin(45deg) * $quarter-unit) + $base-unit + $quarter-unit;
+        &.icon-1 {
+            background-color: $dark-red;
+        }
 
-            &::before, &::after {
-                transition: all 0.3s;
-                content: '';
+        &.icon-0 {
+            background-color: $dark-blue;
+        }
+
+        &.icon-2 {
+            background-color: $dark-yellow;
+        }
+
+        &:hover {
+            width: $nav-height * 3;
+
+            div.menu-item {
                 display: block;
-                width: $base-unit;
-                height: $eight-unit;
-                background-color: darken($white, 10);
+                width: 100%;
+            }
+        }
+
+        // submenu
+        > div.menu-item {
+            display: none;
+            position: absolute;
+            top: 0;
+
+            &.active {
+                // background-color: rgba(0, 0, 0, 0.2);
+            }
+
+            > .arrow {
                 position: absolute;
-                border-radius: 10pt;
-                top: 50%;
-                left: calc(50% - #{$base-unit});
-            }
+                height: 100%;
+                width: 50px;
+                right: 0;
+                // half of the height of the arrow + height of paragraph
+                // top: (sin(45deg) * $quarter-unit) + $base-unit + $quarter-unit;
 
-            &::before {
-                transform: rotate(45deg);
-            }
+                &::before, &::after {
+                    transition: all 0.3s;
+                    content: '';
+                    display: block;
+                    width: $base-unit;
+                    height: $eight-unit;
+                    background-color: darken($white, 10);
+                    position: absolute;
+                    border-radius: 10pt;
+                    top: 50%;
+                    left: calc(50% - #{$base-unit});
+                }
 
-            &::after {
-                transform: rotate(-45deg);
-                left: calc(50% - #{(sin(45deg) * $half-unit)});
-            }
-
-            &.up {
                 &::before {
-                    transform: rotate(-45deg);
+                    transform: rotate(45deg);
                 }
 
                 &::after {
-                    transform: rotate(45deg);
+                    transform: rotate(-45deg);
+                    left: calc(50% - #{(sin(45deg) * $half-unit)});
+                }
+
+                &.up {
+                    &::before {
+                        transform: rotate(-45deg);
+                    }
+
+                    &::after {
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+
+            > a {
+                flex-grow: 1;
+                padding: 0 $base-unit;
+                transition: all 0.3s;
+                border-radius: $nav-height;
+                color: $white;
+
+                > p {
+                    color: $white;
+                }
+
+                &:hover {
                 }
             }
         }
+        // sub menus
 
-        a {
-            flex-grow: 1;
-            padding: 0 $base-unit;
-            transition: all 0.3s;
+        > ul.sub-menu {
+            display: none;
 
-            &:hover {
-                background-color: rgba(0,0,0,0.5);
-                color: lighten($main-color, 20);
+            &.active {
+                display: block;
             }
-        }
-    }
-
-    // sub menus
-
-    ul {
-        background-color: rgba(0,0,0,0.1);
-        text-align: center;
-        font-size: $font-size * 0.9;
-        padding-left: $base-unit;
-        position: relative;
-        display: none;
-
-        &.active {
-            display: block;
-        }
-
-        &::before {
-            content: '';
-            height: 100%;
-            width: $base-unit;
-            left: 0;
-            position: absolute;
-            background-color: $main-dark;
         }
     }
 }

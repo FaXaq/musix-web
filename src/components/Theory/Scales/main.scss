@@ -1,0 +1,27 @@
+@import "@/assets/scss/vars.scss";
+
+#scales {
+    padding: $base-unit * 5;
+
+    > .selectors {
+        display: flex;
+        flex-direction: row;
+
+        > * {
+            width: 50%;
+            padding: $base-unit;
+        }
+    }
+
+    .scale-presentation {
+        .note-list {
+            padding: 0 $quarter-unit;
+
+            > li {
+                &:not(:first-child)::before {
+                    content: ','
+                }
+            }
+        }
+    }
+}

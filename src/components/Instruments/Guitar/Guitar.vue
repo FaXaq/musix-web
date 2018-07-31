@@ -7,7 +7,9 @@
              :class="{ note:
                      (randomOnce && checkRandomPosition(string - 1, 0, strings[string - 1][0])) ||
                      (!randomOnce && checkPosition(string - 1, 0, strings[string - 1][0])) }">
-          {{ tuning[string - 1].getFullName() }}
+          <p>
+            {{ tuning[string - 1].getFullText() }}
+          </p>
         </div>
       </div>
       <div class="frets">
@@ -19,9 +21,12 @@
                        checkRandomPosition(string - 1, fret, strings[string - 1][fret])) ||
                        (!randomOnce && checkPosition(string - 1, fret, strings[string - 1][fret]))"
             >
-              <span v-if="showNotesName">
+              <p v-if="showNotesNames && randomOnce">
                 {{ stringifyNotesArray(strings[string - 1][fret], ' / ') }}
-              </span>
+              </p>
+              <p v-if="showNotesNames && !randomOnce">
+                {{ getNoteNameAtPosition(string - 1, fret, strings[string - 1][fret]) }}
+              </p>
             </div>
             <div :class="'string' + string">
             </div>

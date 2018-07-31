@@ -1,0 +1,25 @@
+@import '@/assets/scss/vars.scss';
+
+.piano-note {
+  height: 100%;
+  position: relative;
+  width: $base-unit;
+  display: block;
+  border: 1px solid $main-dark;
+
+  &.accidental {
+    background-color: $light-blue;
+    height: 70%;
+    width: $half-unit;
+    z-index: 2;
+    margin-left: -$quarter-unit;
+
+    + .piano-note {
+      margin-left: - $quarter-unit;
+    }
+  }
+
+  &.highlight {
+    background-color: $main-cta;
+  }
+}

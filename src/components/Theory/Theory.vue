@@ -1,5 +1,5 @@
 <template>
-  <p>Theory</p>
+  <router-view></router-view>
 </template>
 
 <script src="./main.js"></script>

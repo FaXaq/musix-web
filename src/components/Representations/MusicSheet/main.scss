@@ -1,0 +1,44 @@
+@import "@/assets/scss/vars.scss";
+
+#paper {
+    .cursor {
+        // background-color: #000000;
+        // width: 1px;
+    }
+}
+
+#midi {
+    color: red;
+    > .abcjs-inline-midi {
+        background-color: transparent;
+        border-radius: 0;
+        color: $font-color-title;
+
+        > .abcjs-midi-progress-background {
+            background-color: $main-blue;
+            height: $eight-unit;
+            border: none;
+            border-radius: 0;
+
+            > .abcjs-midi-progress-indicator {
+                height: $base-unit;
+                width: $base-unit;
+                border-radius: $base-unit;
+                top: -$half-unit;
+                background-color: $font-color-title;
+            }
+        }
+
+        > .abcjs-btn {
+            &::before {
+                color: $font-color-title;
+            }
+        }
+
+        button {
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}

@@ -99,8 +99,8 @@ h6 {
         flex-basis: 1;
     }
 
-    .align-middle {
-        jusitfy-content: center;
+    &.align-middle {
+        justify-content: center;
         align-items: center;
     }
 }
@@ -168,6 +168,12 @@ h6 {
     }
 }
 
+@for $i from 1 through 5 {
+    .top-base-#{$i} {
+        top: $base-unit * $i;
+    }
+}
+
 
 // imgs
 
@@ -189,4 +195,25 @@ img {
 
 .no-overflow {
     overflow: hidden;
+}
+
+// prez
+
+.jumbotron {
+    height: 50vh;
+    background-color: white;
+    box-shadow: inset 0px 0px 20px rgba($main-dark, 0.6);
+    background-image: url('/static/bg.jpg');
+    background-size: cover;
+    background-position: bottom;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        color: $light-font-color-title-light;
+        opacity: 1;
+        text-shadow: 0px 0px 10px rgba($main-dark, 0.6);
+    }
 }

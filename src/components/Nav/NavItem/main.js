@@ -26,6 +26,9 @@ export default {
   props: {
     route: {
       type: Object
+    },
+    index: {
+      type: Number
     }
   }
 }

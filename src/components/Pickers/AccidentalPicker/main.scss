@@ -1,0 +1,51 @@
+@import "@/assets/scss/vars.scss";
+
+ul.accidental-picker {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+
+    > li {
+        color: $white;
+        flex-grow: 1;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+
+        &:not(:first-child) {
+            margin-top: $eight-unit;
+        }
+
+        label {
+            background-color: $main-dark;
+            padding: $half-unit;
+            transition: all 0.3s;
+            width: 100%;
+            display: block;
+            position: relative;
+            &::before {
+
+                transition: all 0.3s;
+                position: absolute;
+                content: '';
+                display: block;
+                height: $quarter-unit;
+                width: $quarter-unit;
+                border-radius: $quarter-unit;
+
+                top: calc(50% - #{$eight-unit});
+                right: $base-unit;
+
+                background-color: $white;
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+    input {
+        display: none;
+
+        &:checked+label {
+            &::before {
+                background-color: $main-color;
+            }
+        }
+    }
+}

@@ -14,8 +14,15 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.0",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0",
+    "@fortawesome/vue-fontawesome": "^0.1.0",
+    "abcjs": "^5.1.2",
     "bourbon": "^5.0.1",
-    "musix": "^0.1.5",
+    "font-awesome": "^4.7.0",
+    "i": "^0.3.6",
+    "musix": "^0.1.9",
+    "npm": "^6.1.0",
     "vue": "^2.5.2",
     "vue-carousel": "^0.9.0",
     "vue-router": "^3.0.1"
@@ -99,6 +106,6 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "not ie <= 9"
   ]
 }

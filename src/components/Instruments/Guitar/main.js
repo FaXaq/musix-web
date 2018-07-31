@@ -19,8 +19,10 @@ export default {
   },
   watch: {
     notes() {
-      this.getRandomOctave()
-      this.getRandomString()
+      if (this.randomOnce) {
+        this.getRandomOctave()
+        this.getRandomString()
+      }
     }
   },
   methods: {
@@ -63,7 +65,6 @@ export default {
         this.randomOctave = Math.floor(Math.random() * Math.floor(this.frets / 12))
       }
     },
-
     checkRandomPosition(stringNumber, fret, currentNotes) {
       /* check if random string is checked and if random octave is checkedx */
       if (stringNumber === this.randomString &&
@@ -80,8 +81,20 @@ export default {
     checkPosition(stringNumber, fret, currentNotes) {
       for (var i = 0; i < currentNotes.length; i++) {
         for (var j = 0; j < this.notes.length; j++) {
+          if (currentNotes[i].getFullName() === this.notes[j].getFullName()) {
+            if (!this.followPitch) return true
+            else if (currentNotes[i].getPitch().getValue() === this.notes[j].getPitch().getValue()) {
+              return true
+            }
+          }
+        }
+      }
+    },
+    getNoteNameAtPosition(stringNumber, fret, currentNotes) {
+      for (var i = 0; i < currentNotes.length; i++) {
+        for (var j = 0; j < this.notes.length; j++) {
           if (currentNotes[i].getFullName() === this.notes[j].getFullName())
-            return true
+            return currentNotes[i].getFullText()
         }
       }
     }
@@ -101,12 +114,12 @@ export default {
     },
     tuning: {
       default: () => [
-        new musix.Note('E', 4),
-        new musix.Note('B', 3),
-        new musix.Note('G', 3),
-        new musix.Note('D', 3),
-        new musix.Note('A', 2),
-        new musix.Note('E', 2),
+        new musix.Note({ name: 'E', sciPitch: 4 }),
+        new musix.Note({ name: 'B', sciPitch: 3 }),
+        new musix.Note({ name: 'G', sciPitch: 3 }),
+        new musix.Note({ name: 'D', sciPitch: 3 }),
+        new musix.Note({ name: 'A', sciPitch: 2 }),
+        new musix.Note({ name: 'E', sciPitch: 2 }),
       ],
       type: Array,
     },
@@ -125,14 +138,16 @@ export default {
       type: Boolean
     },
     /* show notes name on fretboard */
-    showNotesName: {
+    showNotesNames: {
       default: false,
       type: Boolean
     }
   },
   created() {
     this.populateStrings()
-    this.getRandomOctave()
-    this.getRandomString()
+    if (this.randomOnce) {
+      this.getRandomOctave()
+      this.getRandomString()
+    }
   }
 }

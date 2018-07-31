@@ -20,11 +20,11 @@ $dark-yellow: #ccc010;
 $dark-red: #c21a43;
 $dark-pink: #d00c68;
 
-$main-color: #94e064;
-
 $main-dark: #2e494a;
 $bg-light: #fafafa;
 $white: #fafafa;
+
+$main-color: $main-pink;
 
 // fonts
 @import url('https://fonts.googleapis.com/css?family=Oxygen:300,400,700&subset=latin-ext');
@@ -54,8 +54,11 @@ $quarter-unit: $base-unit / 4;
 $eight-unit: $base-unit / 8;
 
 // guitar
-$guitar-string: lightgrey;
-$inlay-bg: white;
+$guitar-string: $dark-blue;
+$inlay-bg: $light-blue;
+$fret-color: $dark-font-color-title-light;
+$note-color: $dark-cta;
+$note-font-color: $font-color-title-light;
 
 // nav
 $nav-height: $base-unit * 3;

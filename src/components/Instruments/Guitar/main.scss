@@ -12,26 +12,51 @@
         display: flex;
         flex-direction: row;
 
-        .nut {
-            color: $main-dark;
-            padding: 0px 10px;
-            display: flex;
-            flex-direction: column;
-            border-right: 3px solid white;
-            padding: 10px 0px;
+        // dirty hack
+        p {
+          margin: auto;
+          display: table-cell;
+          vertical-align: middle;
+        }
+
+        .tuning {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: $double-unit;
+          position: relative;
+
+          // nut wire
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 100%;
+            width: $eight-unit;
+            background-color: $fret-color;
+            right: calc(0px - calc(#{$eight-unit} / 2));
+          }
+
+          .nut {
+              height: $base-unit + $half-unit;
+              width: $base-unit + $half-unit;
+              color: $main-dark;
+              margin: auto;
+              display: flex;
+              flex-direction: column;
+          }
+
         }
 
         .frets {
             flex-grow: 1;
             display: flex;
+            min-width: $base-unit + $half-unit;
             justify-content: space-around;
 
             > .fret {
-                background-image: url('./rosewood_neck.jpg');
-                background-color: #432c26;
                 flex-grow: 2;
                 flex-basis: 0;
-                border-right: 2px solid white;
                 display: flex;
                 flex-direction: column;
                 position: relative;
@@ -41,42 +66,47 @@
                         content: '';
 
                         position: absolute;
-                        top: calc(50% - 5px);
-                        left: calc(50% - 5px);
-                        z-index: 1;
-                        display: block;
-
-                        height: 10px;
-                        width: 10px;
-                        border-radius: 100%;
+                        bottom: 0;
+                        left: $quarter-unit;
+                        height: 5%;
+                        width: calc(100% - #{$half-unit});
                         background: $inlay-bg;
                     }
                 }
 
                 &.fret12, &.fret24 {
-                    &::before, &::after {
-                        content: '';
+                  &::before {
+                    content: '';
+                    position: absolute;
+                    left: $quarter-unit;
+                    top: 0;
+                    height: calc(100%);
+                    width: calc(100% - #{$half-unit});
+                    background-color: $inlay-bg;
+                  }
 
-                        position: absolute;
-                        top: calc(25% - 5px);
-                        left: calc(50% - 5px);
-                        z-index: 1;
-                        display: block;
-
-                        height: 10px;
-                        width: 10px;
-                        border-radius: 100%;
-                        background: $inlay-bg;
-                    }
-
-                    &::after {
-                        top: calc(75% - 5px);
-                    }
+                    // &::before, &::after {
+                    //     content: '';
+                    //
+                    //     position: absolute;
+                    //     top: calc(25% + #{$base-unit});
+                    //     left: calc(50% - #{$half-unit});
+                    //     z-index: 1;
+                    //     display: block;
+                    //
+                    //     height: $base-unit;
+                    //     width: $base-unit;
+                    //     border-radius: 100%;
+                    //     background: $inlay-bg;
+                    // }
+                    //
+                    // &::after {
+                    //     top: calc(75% - #{$base-unit});
+                    // }
                 }
             }
 
             > .empty-fret {
-                background: url('./rosewood_neck.jpg');
                 flex-grow: 1;
             }
 
@@ -84,14 +114,29 @@
                 flex-grow: 1;
                 flex-basis: 0;
                 display: flex;
+                min-height: $double-unit;
+                min-width: $double-unit;
                 flex-direction: column;
                 justify-content: center;
                 align-items: middle;
-                z-index: 2;
-                padding: 10px 0px;
+                z-index: 4;
+                position: relative;
+
+                // fret wire
+                &::after {
+                  content: '';
+                  display: block;
+                  position: absolute;
+                  height: 100%;
+                  width: $eight-unit;
+                  background-color: $fret-color;
+                  right: calc(0px - calc(#{$eight-unit} / 2));
+                  box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+                }
 
                 > div:not(.note) {
                     background: $guitar-string;
+                    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
                     display: block;
                     position: absolute;
                     width: 100%;
@@ -129,9 +174,6 @@
                 }
 
                 .note {
-                    height: 100%;
-                    width: 50%;
-                    margin: auto;
                 }
             }
         }
@@ -140,8 +182,20 @@
 
 .note {
     z-index: 3;
-    text-shadow: 0px 0px 10px rgba(0,0,0,1);
-    background-color: red;
+    color: $font-color;
+    background-color: $note-color;
+    height: $base-unit + $half-unit;
+    width: $base-unit + $half-unit;
+    margin: auto;
+    text-align: center;
     border-radius: 100%;
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: bold;
+
+    > p {
+      color: $note-font-color;
+      font-size: $font-size / 1.5;
+    }
 }

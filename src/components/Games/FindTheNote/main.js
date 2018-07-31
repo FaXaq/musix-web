@@ -1,6 +1,7 @@
 let musix = require('musix')
 
 import Guitar from '@/components/Instruments/Guitar/Guitar'
+import Piano from '@/components/Instruments/Piano/Piano'
 import NotesHandler from '@/mixins/NotesHandler'
 
 export default {
@@ -31,32 +32,6 @@ export default {
     generateRandomState() {
       this.currentState = musix.Note.getRandomNoteWithAccidental()
     },
-    getAllNotes() {
-      let allNotes = []
-      let notes = musix.Note.getNotes()
-      let notesLength = notes.length
-
-      /* we go just to the length to add the last alias to the notes array (Ab to Gs) */
-      for (var i = 0; i <= notesLength; i++) {
-        let newNote = new musix.Note(notes[i % notesLength])
-        /* add flat alias to previous element */
-        if (!newNote.isCorF() && i > 0) {
-          let flattenedNewNote = newNote.duplicate()
-          flattenedNewNote.flatten()
-          allNotes[allNotes.length - 1].push(flattenedNewNote)
-          if (i === notesLength) break
-        }
-        /* push note only if we're still in the note array for the first time */
-        allNotes.push([newNote])
-        /* add sharp alias to next element */
-        if (!newNote.isBorE() && i < notesLength) {
-          let sharpenedNewNote = newNote.duplicate()
-          sharpenedNewNote.sharpen()
-          allNotes.push([sharpenedNewNote])
-        }
-      }
-      return allNotes
-    },
     checkNotes(notes) {
       for (var i = 0; i < notes.length; i++) {
         if (this.currentState.getFullName() === notes[i].getFullName()) {
@@ -79,9 +54,10 @@ export default {
   },
   created() {
     this.generateRandomState()
-    this.notes = this.getAllNotes()
+    this.notes = this.getAllNotesWithAccidentals()
   },
   components: {
-    Guitar
+    Guitar,
+    Piano
   }
 }

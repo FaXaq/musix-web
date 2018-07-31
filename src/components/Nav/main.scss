@@ -1,90 +1,103 @@
 @import '@/assets/scss/vars.scss';
 
 #nav {
-    background-color: $main-color;
-    height: $nav-height;
-    width: $nav-height + $base-unit + $half-unit;
     z-index: 6;
-    box-shadow: 0px 0px 7px rgba($main-dark, .3);
     position: fixed;
     transition: all 0.3s;
+    top: $base-unit;
+    left: $base-unit;
+    width: $nav-height * 3;
 
-    &.open {
-        width: 100%;
-    }
-
-    #burger {
-        position: relative;
-        height: $base-unit * 1.5;
-        width: $base-unit * 2.5;
-        margin: ($base-unit * 0.75) $base-unit;
-        z-index: 4;
+    > #burger-container {
+        box-shadow: 0px 0px 7px rgba($main-color, .3);
+        height: $nav-height;
+        width: $nav-height;
+        border-radius: 100%;
+        z-index: 5;
+        background-color: $dark-pink;
         cursor: pointer;
+        position: absolute;
 
-        #topBar, #centralBar, #bottomBar {
-            position: absolute;
-            width: 100%;
-            height: $base-unit / 4;
-            background-color: $white;
-            transition: all 0.3s;
-        }
+        > #burger {
+            position: relative;
+            height: $base-unit;
+            width: $base-unit * 1.5;
+            margin: $base-unit ($half-unit + $quarter-unit);
+            z-index: 4;
 
-        #topBar {
-            top: 0;
-        }
+            #topBar, #centralBar, #bottomBar {
+                position: absolute;
+                width: 100%;
+                height: $eight-unit;
+                background-color: $white;
+                transition: all 0.3s;
+            }
 
-        #centralBar {
-            top: calc(50% - (#{$base-unit} / 4)/2);
-        }
-
-        #bottomBar {
-            bottom: 0;
-        }
-
-        &.close {
             #topBar {
-                transform: rotate(45deg);
-                top: calc(50% - (#{$base-unit} / 4)/2);
+                top: 0;
             }
 
             #centralBar {
-                width: 0;
+                top: calc(50% - (#{$eight-unit})/2);
             }
 
             #bottomBar {
-                bottom: calc(50% - (#{$base-unit} / 4)/2);
-                transform: rotate(-45deg);
+                bottom: 0;
+            }
+
+            &.close {
+                #topBar {
+                    transform: rotate(45deg);
+                    top: calc(50% - (#{$eight-unit})/2);
+                }
+
+                #centralBar {
+                    width: 0;
+                }
+
+                #bottomBar {
+                    bottom: calc(50% - (#{$eight-unit})/2);
+                    transform: rotate(-45deg);
+                }
             }
         }
     }
 
-    #menu {
+    > #menu {
         display: block;
-        z-index: 5;
-        width: $base-unit * 20;
+        z-index: 2;
         position: absolute;
-        top: $nav-height;
-        left: - $base-unit * 20;
+        top: 0;
+        left: 0;
         transition: all 0.3s;
-        background-color: darken($main-color, 40);
         text-align: center;
 
         &.active {
-            left: 0;
-            box-shadow: 2px 2px 7px rgba($main-dark, .3);
+            top: $nav-height + $base-unit;
+            height: 100%;
+
+            > li {
+                @for $i from 1 through 5 {
+                    &.top-nav-height-#{$i} {
+                        top: ($nav-height * $i) + ($base-unit * $i);
+                    }
+                }
+
+                width: 100%;
+                top: initial;
+                font-weight: bold;
+                display: block;
+            }
         }
 
         display: flex;
         flex-direction: column;
 
         > li {
-            color: darken($white, 5);
-            position: relative;
-            font-weight: bold;
-            text-shadow: 0px 0px 20px rgba(darken($main-dark, 20), 0.4);
-            background-color: darken($main-color, 30);
-            display: block;
-            border-bottom: 1px solid $main-dark;
+            position: absolute;
+            color: $white;
+            top: 0;
+            transition: top 0.3s;
         }
     }
 
@@ -93,25 +106,30 @@
         height: calc(100vh - #{$nav-height});
         width: $base-unit * 5;
         z-index: -1;
-        position: absolute;
-        top: $nav-height;
+        position: fixed;
+        top: 0;
+        left: 0;
 
         &.active {
-            z-index: 5;
+            z-index: 2;
         }
     }
 
     #dragClose {
-        height: calc(100vh - #{$nav-height});
-        position: absolute;
-        width: 100%;
+        height: 100vh;
+        position: fixed;
+        width: 100vw;
+        opacity: 0;
         left: 0;
-        transition: background-color 0.3s;
+        top: 0;
+        transition: all 1s;
         display: none;
+        background-color: rgba(0,0,0,0);
 
         &.active {
+            opacity: 1;
             display: block;
-            // background-color: rgba(0,0,0, 0.3);
+            background-color: rgba(0,0,0,0.1);
             transition-delay: display 0.3s;
         }
     }

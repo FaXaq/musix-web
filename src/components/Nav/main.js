@@ -26,17 +26,30 @@ export default {
     populateRoutes(array, routes) {
       routes.forEach(route => {
         if (route.name !== "404") {
-          array.push({
+          let r = {
             name: route.name,
             path: route.path,
-          })
+            icon: route.meta ? route.meta.icon : undefined,
+            text: route.meta ? route.meta.name : undefined,
+            title: route.meta ? route.meta.title : undefined
+          }
 
           if (route.children) {
-            array[array.length - 1].children = []
-            this.populateRoutes(array[array.length - 1].children, route.children)
+            r.name = this._findDefaultRouteName(route.children)
           }
+
+          array.push(r)
         }
       })
+    },
+    _findDefaultRouteName(routes) {
+      for (var i = 0; i < routes.length; i++) {
+        if (routes[i].path === '') {
+          return routes[i].name
+        }
+      }
+
+      return '404'
     },
     menuItemSelected() {
       this.close = false
